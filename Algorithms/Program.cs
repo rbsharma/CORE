@@ -19,7 +19,10 @@ namespace Algorithms
             //int index = Search.Linear(raw, 111);
             //Console.WriteLine(index);
 
-            int index = Search.Binary(raw, 1);
+            //int index = Search.Binary(raw, 8);
+            //Console.WriteLine(index);
+
+            int index = Search.BinaryRecursive(raw, 0, raw.Length - 1, 12);
             Console.WriteLine(index);
         }
     }
@@ -153,7 +156,7 @@ namespace Algorithms
             int index = -1,
                 start = 0,
                 end = sortedArray.Length - 1,
-                middle = (end - start) / 2;
+                middle = (end + start) / 2;
 
             for (int i = 0; i < sortedArray.Length; i++)
             {
@@ -164,14 +167,14 @@ namespace Algorithms
                 }
                 else if (element >= sortedArray[middle])
                 {
-                    start = middle+1;
+                    start = middle + 1;
                     middle = (end + start) / 2;
                     continue;
                 }
                 else
                 {
-                    end = middle-1;
-                    middle = (end - start) / 2;
+                    end = middle - 1;
+                    middle = (end + start) / 2;
                     continue;
                 }
             }
@@ -179,5 +182,33 @@ namespace Algorithms
             return index;
         }
 
+        /// <summary>
+        /// Recursive Binary search
+        /// </summary>
+        /// <param name="sortedArray"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="element"></param>
+        /// <returns></returns>
+        public static int BinaryRecursive(int[] sortedArray, int start, int end, int element)
+        {
+            if (end >= start)
+            {
+                int middle = (start + end) / 2;
+                if (sortedArray[middle] == element)
+                {
+                    return middle;
+                }
+                else if (sortedArray[middle] > element)
+                {
+                    return BinaryRecursive(sortedArray, start, middle - 1, element);
+                }
+                else
+                {
+                    return BinaryRecursive(sortedArray, middle + 1, end, element);
+                }
+            }
+            return -1;
+        }
     }
 }
