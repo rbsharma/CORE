@@ -12,23 +12,39 @@ namespace Algorithms
         {
             int[] raw = new int[] { 8, 4, 9, 3, 11, 6, 2, 7, 12, 5, 10, 1 };
 
-            //Sort.Output(raw);
-            Sort.Bubble(raw).Output();
+            Sort.Output(raw);
+            Sort.Insertion(raw).Output();
+            //Sort.Bubble(raw).Output();
             //Sort.Selection(raw).Output();
 
             //int index = Search.Linear(raw, 111);
-            //Console.WriteLine(index);
-
             //int index = Search.Binary(raw, 8);
+            //int index = Search.BinaryRecursive(raw, 0, raw.Length - 1, 12);
             //Console.WriteLine(index);
-
-            int index = Search.BinaryRecursive(raw, 0, raw.Length - 1, 12);
-            Console.WriteLine(index);
         }
     }
 
     static class Sort
     {
+
+        public static int[] Insertion(int[] raw)
+        {
+            for (int i = 1; i < raw.Length; i++)
+            {
+                for (int j = i; j >= 1; j--)
+                {
+                    if (raw[j] < raw[j - 1])
+                    {
+                        Swap(ref raw[j], ref raw[j - 1]);
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+            }
+            return raw;
+        }
 
         /// <summary>
         /// Selection Sort Algorithm;
