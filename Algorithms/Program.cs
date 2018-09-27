@@ -26,22 +26,17 @@ namespace Algorithms
 
     static class Sort
     {
-
         public static int[] Insertion(int[] raw)
         {
             for (int i = 1; i < raw.Length; i++)
             {
-                for (int j = i; j >= 1; j--)
+                int key = raw[i];
+                int j;
+                for (j = i; j >= 1 && key < raw[j - 1]; j--)
                 {
-                    if (raw[j] < raw[j - 1])
-                    {
-                        Swap(ref raw[j], ref raw[j - 1]);
-                    }
-                    else
-                    {
-                        break;
-                    }
+                    raw[j] = raw[j - 1];
                 }
+                raw[j] = key;
             }
             return raw;
         }
