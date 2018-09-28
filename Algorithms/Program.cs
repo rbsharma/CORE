@@ -12,8 +12,10 @@ namespace Algorithms
         {
             int[] raw = new int[] { 8, 4, 9, 3, 11, 6, 2, 7, 12, 5, 10, 1 };
 
+
             Sort.Output(raw);
-            Sort.Insertion(raw).Output();
+            Sort.Merge(raw, 0, raw.Length - 1).Output();
+            //Sort.Insertion(raw).Output();
             //Sort.Bubble(raw).Output();
             //Sort.Selection(raw).Output();
 
@@ -26,6 +28,81 @@ namespace Algorithms
 
     static class Sort
     {
+
+        #region COMPLETED
+        /// <summary>
+        /// Merge sort Algorithm
+        /// </summary>
+        /// <param name="raw"></param>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static int[] Merge(int[] raw, int l, int r)
+        {
+            if (r > l)
+            {
+                int m = (l + r) / 2;
+                Merge(raw, l, m);
+                Merge(raw, m + 1, r);
+                Combine(raw, l, m, r);
+            }
+            return raw;
+        }
+
+        static void Combine(int[] raw, int l, int m, int r)
+        {
+            int n1 = m - l + 1;
+            int n2 = r - m;
+            int[] la = new int[n1];
+            int[] ra = new int[n2];
+            int i, j;
+            for (i = 0; i < la.Length; i++)
+            {
+                la[i] = raw[l + i];
+            }
+            for (j = 0; j < ra.Length; j++)
+            {
+                ra[j] = raw[m + 1 + j];
+            }
+
+            i = 0;
+            j = 0;
+            int k = l;
+            while (i < la.Length && j < ra.Length)
+            {
+                if (la[i] > ra[j])
+                {
+                    raw[k] = ra[j];
+                    j++;
+                }
+                else
+                {
+                    raw[k] = la[i];
+                    i++;
+                }
+                k++;
+            }
+
+            while (i < la.Length)
+            {
+                raw[k] = la[i];
+                i++;
+                k++;
+            }
+
+            while (j < ra.Length)
+            {
+                raw[k] = ra[j];
+                j++;
+                k++;
+            }
+        }
+
+        /// <summary>
+        /// Insertion Sort Algorithm
+        /// </summary>
+        /// <param name="raw"></param>
+        /// <returns></returns>
         public static int[] Insertion(int[] raw)
         {
             for (int i = 1; i < raw.Length; i++)
@@ -113,10 +190,13 @@ namespace Algorithms
             }
             Console.WriteLine();
         }
+
+        #endregion
     }
 
     static class Search
     {
+        #region COMPLETED
         /// <summary>
         /// Perform Search based on array sorted state;
         /// </summary>
@@ -221,5 +301,6 @@ namespace Algorithms
             }
             return -1;
         }
+        #endregion
     }
 }
