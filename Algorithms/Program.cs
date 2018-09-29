@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,11 +12,12 @@ namespace Algorithms
     {
         static void Main(string[] args)
         {
-            int[] raw = new int[] { 8, 4, 9, 3, 11, 6, 2, 7, 12, 5, 10, 1 };
-
+            //int[] raw = new int[] { 8, 4, 9, 3, 11, 6, 2, 7, 12, 5, 10, 1 };
+            int[] raw = FileOperations.GetTestData();
 
             Sort.Output(raw);
-            Sort.Merge(raw, 0, raw.Length - 1).Output();
+            Sort.Quick(raw, 0, raw.Length - 1).Output();
+            //Sort.Merge(raw, 0, raw.Length - 1).Output();
             //Sort.Insertion(raw).Output();
             //Sort.Bubble(raw).Output();
             //Sort.Selection(raw).Output();
@@ -28,8 +31,50 @@ namespace Algorithms
 
     static class Sort
     {
-
         #region COMPLETED
+        /// <summary>
+        /// Quick sort Algorith, using pivot as last element method;
+        /// </summary>
+        /// <param name="raw"></param>
+        /// <param name="l"></param>
+        /// <param name="r"></param>
+        /// <returns></returns>
+        public static int[] Quick(int[] raw, int l, int r)
+        {
+            if (r > l)
+            {
+                int p = QuickConquer(raw, l, r);
+
+                Quick(raw, l, p - 1);
+                Quick(raw, p + 1, r);
+            }
+            return raw;
+        }
+
+        static int QuickConquer(int[] raw, int l, int r)
+        {
+            int pivot = raw[r];
+            int i = l, j = l;
+            //int n = r - l + 1;
+            for (j = l; j < r; j++)
+            {
+                if (pivot > raw[j] && j != i)
+                {
+                    Swap(ref raw[i], ref raw[j]);
+                    i++;
+                }
+                else if (pivot > raw[j])
+                {
+                    i++;
+                }
+            }
+
+            raw[r] = raw[i];
+            raw[i] = pivot;
+            return i;
+        }
+
+
         /// <summary>
         /// Merge sort Algorithm
         /// </summary>
@@ -302,5 +347,34 @@ namespace Algorithms
             return -1;
         }
         #endregion
+    }
+
+    public static class FileOperations
+    {
+        public static int[] GetTestData()
+        {
+            return ReadTestFiles();
+        }
+
+        static int[] ReadTestFiles()
+        {
+            try
+            {
+                var testCaseFolderPath = AppDomain.CurrentDomain.BaseDirectory.Replace("\\bin\\Debug", "\\testcases");
+                var testCaseFiles = Directory.GetFiles(testCaseFolderPath);
+
+                var lines = File.ReadAllLines(testCaseFiles[0]);
+                int[] arr = new int[lines.Length];
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    arr[i] = Convert.ToInt32(lines[i]);
+                }
+                return arr;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
