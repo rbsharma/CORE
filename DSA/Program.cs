@@ -1,6 +1,7 @@
 ﻿using Algorithms.Data_Structure;
 using DSA.Algorithms;
 using DSA.Helpers;
+using System;
 
 namespace DSA
 {
@@ -12,9 +13,21 @@ namespace DSA
             #region DS
 
             BinarySearchTree bst = new BinarySearchTree();
-            bst.Insert(8);
-            bst.Insert(1);
-            bst.Insert(2);
+            bst.Insert(50);
+            bst.Insert(30);
+            bst.Insert(20);
+            bst.Insert(40);
+            bst.Insert(70);
+            bst.Insert(60);
+            bst.Insert(80);
+
+            bst.InOrderTraversal();
+            Console.WriteLine();
+
+            bst.PreOrderTraversal();
+            Console.WriteLine();
+
+            bst.PostOrderTraversal();
 
             #endregion
 

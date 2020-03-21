@@ -66,5 +66,50 @@ namespace Algorithms.Data_Structure
             return root;
         }
 
+
+        public void InOrderTraversal()
+        {
+            InOrder(Root);
+        }
+
+        void InOrder(BinaryTreeNode _root)
+        {
+            if (_root != null)
+            {
+                InOrder(_root.Left);
+                Console.Write(_root.value + " ");
+                InOrder(_root.Right);
+            }
+        }
+
+        public void PreOrderTraversal()
+        {
+            PreOrder(Root);
+        }
+
+        private void PreOrder(BinaryTreeNode _root)
+        {
+            if (_root != null)
+            {
+                Console.Write(_root.value + " ");
+                PreOrder(_root.Left);
+                PreOrder(_root.Right);
+            }
+        }
+
+        public void PostOrderTraversal()
+        {
+            PostOrder(Root);
+        }
+
+        private void PostOrder(BinaryTreeNode _root)
+        {
+            if (_root != null)
+            {
+                PostOrder(_root.Left);
+                PostOrder(_root.Right);
+                Console.Write(_root.value + " ");
+            }
+        }
     }
 }
