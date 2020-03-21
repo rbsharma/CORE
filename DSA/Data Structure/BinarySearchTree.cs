@@ -34,6 +34,8 @@ namespace Algorithms.Data_Structure
         /// </summary>
         BinaryTreeNode Root;
 
+
+        #region INSERT
         /// <summary>
         /// Insert a new element in binary search tree.
         /// </summary>
@@ -65,8 +67,9 @@ namespace Algorithms.Data_Structure
             // return the unchanged root node.
             return root;
         }
+        #endregion
 
-
+        #region TRAVERSE
         public void InOrderTraversal()
         {
             InOrder(Root);
@@ -111,5 +114,38 @@ namespace Algorithms.Data_Structure
                 Console.Write(_root.value + " ");
             }
         }
+        #endregion
+
+        #region FIND
+
+        public bool FindKey(int _value)
+        {
+            return SearchKey(Root, _value);
+        }
+
+        private bool SearchKey(BinaryTreeNode root, int value)
+        {
+            // if tree is empty, return false.
+            if (root == null)
+            {
+                return false;
+            }
+
+            // otherwise, recur search down the tree.
+            if (root.value == value)
+            {
+                return true;
+            }            
+            else if (value < root.value)
+            {
+                return SearchKey(root.Left, value);
+            }
+            else
+            {
+                return SearchKey(root.Right, value);
+            }
+        }
+
+        #endregion
     }
 }
