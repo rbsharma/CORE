@@ -42,6 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Searching.cs" />
+    <Compile Include="Algorithms\Sorting.cs" />
+    <Compile Include="Data Structure\BinarySearchTree.cs" />
+    <Compile Include="Helpers\FileOperations.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -51,5 +55,6 @@
   <ItemGroup>
     <Content Include="testcases\TestCase1.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
