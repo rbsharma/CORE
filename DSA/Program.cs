@@ -1,4 +1,5 @@
-﻿using DSA.Algorithms;
+﻿using Algorithms.Data_Structure;
+using DSA.Algorithms;
 using DSA.Helpers;
 
 namespace DSA
@@ -7,11 +8,22 @@ namespace DSA
     {
         static void Main(string[] args)
         {
+
+            #region DS
+
+            BinarySearchTree bst = new BinarySearchTree();
+            bst.Insert(8);
+            bst.Insert(1);
+            bst.Insert(2);
+
+            #endregion
+
+            #region Algorithms
             //int[] raw = new int[] { 8, 4, 9, 3, 11, 6, 2, 7, 12, 5, 10, 1 };
-            int[] raw = FileOperations.GetTestData();
+            //int[] raw = FileOperations.GetTestData();
 
             // Sorting.Output(raw);
-            Sorting.Quick(raw, 0, raw.Length - 1).Output();
+            //Sorting.Quick(raw, 0, raw.Length - 1).Output();
             // Sorting.Merge(raw, 0, raw.Length - 1).Output();
             // Sorting.Insertion(raw).Output();
             // Sorting.Bubble(raw).Output();
@@ -20,7 +32,8 @@ namespace DSA
             // int index = Searching.Linear(raw, 111);
             // int index = Searching.Binary(raw, 8);
             // int index = Searching.BinaryRecursive(raw, 0, raw.Length - 1, 12);
-            // Console.WriteLine(index);
+            // Console.WriteLine(index); 
+            #endregion
         }
     }
 }
