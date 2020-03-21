@@ -1,4 +1,5 @@
-﻿using DSA.Helpers;
+﻿using DSA.Algorithms;
+using DSA.Helpers;
 
 namespace DSA
 {
@@ -10,7 +11,7 @@ namespace DSA
             int[] raw = FileOperations.GetTestData();
 
             // Sorting.Output(raw);
-            // Sorting.Quick(raw, 0, raw.Length - 1).Output();
+            Sorting.Quick(raw, 0, raw.Length - 1).Output();
             // Sorting.Merge(raw, 0, raw.Length - 1).Output();
             // Sorting.Insertion(raw).Output();
             // Sorting.Bubble(raw).Output();
