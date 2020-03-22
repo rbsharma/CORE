@@ -70,6 +70,11 @@ namespace Algorithms.Data_Structure
         #endregion
 
         #region TRAVERSE
+
+        /// <summary>
+        /// <para/> USECASE : To get elements in sorted order.
+        /// <para/> LEFT | ROOT | RIGHT
+        /// </summary>
         public void InOrderTraversal()
         {
             InOrder(Root);
@@ -85,6 +90,10 @@ namespace Algorithms.Data_Structure
             }
         }
 
+        /// <summary>
+        /// <para/> USECASE : To copy a tree as it is.
+        /// <para/> ROOT | LEFT | RIGHT
+        /// </summary>
         public void PreOrderTraversal()
         {
             PreOrder(Root);
@@ -100,6 +109,12 @@ namespace Algorithms.Data_Structure
             }
         }
 
+        /// <summary>
+        /// <para/> USECASE : To delete a tree. 
+        /// <para/>Delete child nodes(dependent) before their parent(dependency). 
+        /// So deletion will be performed without any node shift requirement.
+        /// <para/> LEFT | RIGHT | ROOT
+        /// </summary>
         public void PostOrderTraversal()
         {
             PostOrder(Root);
@@ -135,7 +150,7 @@ namespace Algorithms.Data_Structure
             if (root.value == value)
             {
                 return true;
-            }            
+            }
             else if (value < root.value)
             {
                 return SearchKey(root.Left, value);
@@ -144,6 +159,20 @@ namespace Algorithms.Data_Structure
             {
                 return SearchKey(root.Right, value);
             }
+        }
+
+        #endregion
+
+        #region DELETE
+
+        public bool DeleteKey(int _value)
+        {
+            return DeleteNode(Root, _value);
+        }
+
+        private bool DeleteNode(BinaryTreeNode root, int value)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
